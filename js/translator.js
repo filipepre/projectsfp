@@ -7,31 +7,44 @@ async function loadTranslations() {
 }
 
 function applyLanguage(lang) {
-  document.querySelectorAll('[data-i18n]').forEach(el => {
-    const key = el.getAttribute('data-i18n');
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const key = el.getAttribute("data-i18n");
 
-    if (translations[lang] && translations[lang][key]) {
-      el.textContent = translations[lang][key];
+    const value = translations?.[lang]?.[key];
+
+    if (value) {
+      el.textContent = value;
     }
   });
 }
 
 function initLanguageSelector() {
-  const selector = document.getElementById('languageSwitcher');
+  const selector = document.getElementById("languageSwitcher");
 
   if (!selector) {
     setTimeout(initLanguageSelector, 200);
     return;
   }
 
-  applyLanguage(selector.value);
+  // idioma guardado ou default
+  const savedLang = localStorage.getItem("lang") || "pt";
 
-  selector.addEventListener('change', (e) => {
-    applyLanguage(e.target.value);
+  selector.value = savedLang;
+  applyLanguage(savedLang);
+
+  selector.addEventListener("change", (e) => {
+    const lang = e.target.value;
+
+    localStorage.setItem("lang", lang);
+    applyLanguage(lang);
   });
 }
 
-document.addEventListener('DOMContentLoaded', async () => {
+document.addEventListener("DOMContentLoaded", async () => {
   await loadTranslations();
+
+  const savedLang = localStorage.getItem("lang") || "pt";
+  applyLanguage(savedLang);
+
   initLanguageSelector();
 });

@@ -1,12 +1,18 @@
 {
   "pt": {
-    "title": "Bem-vindo",
-    "subtitle": "Este é o meu site",
-    "button": "Carregar"
+    "homeMenu": "Principal",
+    "projectsMenu": "Projetos",
+    "informationMenu": "Informações",
+    "homeTitle": "Bem-vindo",
+    "projectsTitle": "Lista de Projetos",
+    "informationTitle": "Informações"
   },
   "en": {
-    "title": "Welcome",
-    "subtitle": "This is my website",
-    "button": "Load"
+    "homeMenu": "Home",
+    "projectsMenu": "Projects",
+    "informationMenu": "Informations",
+    "homeTitle": "Welcome",
+    "projectsTitle": "Project List",
+    "informationTitle": "Informations"
   }
 }
