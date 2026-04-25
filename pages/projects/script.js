@@ -1,8 +1,10 @@
 document.addEventListener("DOMContentLoaded", async () => {
+  const BASE_URL = location.hostname === "filipepre.github.io" ? "/projectsfp" : "";
+
   const components = [
-    { id: "header", path: "/components/header/index.html", js: "/components/header/script.js", css: "/components/header/style.css" },
-    { id: "navbar", path: "/components/navbar/index.html", js: "/components/navbar/script.js", css: "/components/navbar/style.css" },
-    { id: "dropbox", path: "/components/dropbox/index.html", js: "/components/dropbox/script.js", css: "/components/dropbox/style.css" }
+    { id: "header", path: BASE_URL + "/components/header/index.html", js: BASE_URL + "/components/header/script.js", css: BASE_URL + "/components/header/style.css" },
+    { id: "navbar", path: BASE_URL + "/components/navbar/index.html", js: BASE_URL + "/components/navbar/script.js", css: BASE_URL + "/components/navbar/style.css" },
+    { id: "dropbox", path: BASE_URL + "/components/dropbox/index.html", js: BASE_URL + "/components/dropbox/script.js", css: BASE_URL + "/components/dropbox/style.css" }
   ];
 
   for (const c of components) {
