@@ -1,7 +1,8 @@
 let translations = {};
 
 async function loadTranslations() {
-  const res = await fetch('/locales/locales.json');
+  const BASE_URL = location.hostname === "filipepre.github.io" ? "/projectsfp" : "";
+  const res = await fetch(BASE_URL + '/locales/locales.json');
   translations = await res.json();
 }
 
