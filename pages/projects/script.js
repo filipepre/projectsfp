@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", async () => {
-  const BASE_URL = location.hostname === "filipepre.github.io" ? "/projectsfp" : "";
+  const BASE_URL = location.pathname.startsWith("/projectsfp") ? "/projectsfp" : "";
 
   const components = [
     { id: "header", path: BASE_URL + "/components/header/index.html", js: BASE_URL + "/components/header/script.js", css: BASE_URL + "/components/header/style.css" },
