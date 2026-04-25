@@ -1,0 +1,12 @@
+{
+  "pt": {
+    "title": "Bem-vindo",
+    "subtitle": "Este é o meu site",
+    "button": "Carregar"
+  },
+  "en": {
+    "title": "Welcome",
+    "subtitle": "This is my website",
+    "button": "Load"
+  }
+}
