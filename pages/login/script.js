@@ -1,5 +1,6 @@
 function saveToken() {
     const token = document.getElementById("token").value.trim();
+    const BASE_URL = location.pathname.startsWith("/projectsfp") ? "/projectsfp" : "";
 
     if (!token) {
         alert("Insere um token");
@@ -11,6 +12,6 @@ function saveToken() {
     document.getElementById("msg").innerText = "Token guardado!";
 
     setTimeout(() => {
-        window.location.href = "/pages/admin/index.html";
+        window.location.href = BASE_URL + "/pages/admin/index.html";
     }, 1000);
 }
