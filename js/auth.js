@@ -1,18 +1,17 @@
 (async function () {
 
     const page = window.location.pathname;
-
+    const BASE_URL = location.pathname.startsWith("/projectsfp") ? "/projectsfp" : "";
     const publicPages = ["/pages/login/index.html"];
-
     const token = localStorage.getItem("github_token");
 
     function redirectLogin() {
         localStorage.removeItem("github_token");
-        window.location.replace("/pages/login/index.html");
+        window.location.replace(BASE_URL + "/pages/login/index.html");
     }
 
     function redirectAdmin() {
-        window.location.replace("/pages/admin/index.html");
+        window.location.replace(BASE_URL + "/pages/admin/index.html");
     }
 
     if (!token) {
@@ -42,7 +41,7 @@
 
         console.log("Token válido:", user.login);
 
-        if (page === "/pages/login/index.html") {
+        if (page === BASE_URL + "/pages/login/index.html") {
             redirectAdmin();
             return;
         }
