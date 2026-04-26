@@ -3,16 +3,22 @@
     "homeMenu": "Principal",
     "projectsMenu": "Projetos",
     "informationMenu": "Informações",
+    "adminMenu": "Admin",
     "homeTitle": "Bem-vindo",
     "projectsTitle": "Lista de Projetos",
-    "informationTitle": "Informações"
+    "informationTitle": "Informações",
+    "adminTitle": "Painel de admin",
+    "exitButton": "Desconetar"
   },
   "en": {
     "homeMenu": "Home",
     "projectsMenu": "Projects",
     "informationMenu": "Informations",
+    "adminMenu": "Admin",
     "homeTitle": "Welcome",
     "projectsTitle": "Project List",
-    "informationTitle": "Informations"
+    "informationTitle": "Informations",
+    "adminTitle": "Admin panel",
+    "exitButton": "Logout"
   }
 }

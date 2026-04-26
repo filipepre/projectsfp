@@ -2,7 +2,7 @@ const owner = "filipepre";
 const repo = "projectsfp";
 const path = "data/projects.json";
 const branch = "main";
-const token = "";
+const token = localStorage.getItem("github_token");
 
 async function getFile() {
   const res = await fetch(
@@ -16,7 +16,15 @@ async function getFile() {
 
   const data = await res.json();
 
-  const json = JSON.parse(atob(data.content));
+  if (!data.content) {
+    throw new Error("Ficheiro não encontrado ou erro API: " + data.message);
+  }
+
+  const cleanContent = data.content.replace(/\n/g, "").trim();
+
+  const decoded = decodeURIComponent(escape(atob(cleanContent)));
+
+  const json = JSON.parse(decoded);
 
   return {
     json,
