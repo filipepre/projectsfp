@@ -13,10 +13,12 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 if (!localStorage.getItem("github_token")) {
-    window.location.href = "/pages/login/index.html";
+  const BASE_URL = location.pathname.startsWith("/projectsfp") ? "/projectsfp" : "";
+  window.location.href = BASE_URL + "/pages/login/index.html";
 }
 
 function logout() {
-    localStorage.removeItem("github_token");
-    window.location.href = "/pages/login/index.html";
+  const BASE_URL = location.pathname.startsWith("/projectsfp") ? "/projectsfp" : "";
+  localStorage.removeItem("github_token");
+  window.location.href = BASE_URL + "/pages/login/index.html";
 }

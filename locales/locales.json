@@ -4,21 +4,39 @@
     "projectsMenu": "Projetos",
     "informationMenu": "Informações",
     "adminMenu": "Admin",
+
     "homeTitle": "Bem-vindo",
     "projectsTitle": "Lista de Projetos",
     "informationTitle": "Informações",
     "adminTitle": "Painel de admin",
-    "exitButton": "Desconetar"
+    "exitButton": "Desconetar",
+
+    "nameProjectTable":"Nome",
+    "descriptionTable":"Descrição",
+    "taskTable":"Tarefas",
+    "creationDateTable":"Data de criação",
+    "deadlineTable":"Data de validade",
+    "statusTable":"Estado",
+    "actionTable":"Ações"
   },
   "en": {
     "homeMenu": "Home",
     "projectsMenu": "Projects",
     "informationMenu": "Informations",
     "adminMenu": "Admin",
+
     "homeTitle": "Welcome",
     "projectsTitle": "Project List",
     "informationTitle": "Informations",
     "adminTitle": "Admin panel",
-    "exitButton": "Logout"
+    "exitButton": "Logout",
+
+    "nameProjectTable":"Name",
+    "descriptionTable":"Description",
+    "taskTable":"Tasks",
+    "creationDateTable":"Creation Date",
+    "deadlineTable":"Deadline",
+    "statusTable":"Status",
+    "actionTable":"Actions"
   }
 }

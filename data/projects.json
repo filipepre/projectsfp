@@ -1,13 +1,103 @@
 [
   {
-    "name": "Project 1"
+    "name": "Projeto GitHub Pages",
+    "description": "Criação de um site utilizando o github.",
+    "tasks": [
+      {
+        "description": "Criar o repositorio",
+        "limit_date": "26/04/2026",
+        "status": 1
+      },
+      {
+        "description": "Criar a pagina Home",
+        "limit_date": "26/04/2026",
+        "status": 1
+      },
+      {
+        "description": "Criar a pagina Login",
+        "limit_date": "26/04/2026",
+        "status": 1
+      },
+      {
+        "description": "Criar a pagina Admin",
+        "limit_date": "26/04/2026",
+        "status": 1
+      },
+      {
+        "description": "Criar a pagina Projetos",
+        "limit_date": "26/04/2026",
+        "status": 1
+      },
+      {
+        "description": "Criar a pagina mais informações",
+        "limit_date": "26/04/2026",
+        "status": 1
+      },
+      {
+        "description": "Criar sistema de linguas no site",
+        "limit_date": "26/04/2026",
+        "status": 1
+      },
+      {
+        "description": "Criar menu horizontal para navegar pelas paginas",
+        "limit_date": "26/04/2026",
+        "status": 1
+      },
+      {
+        "description": "Criar sistema de autenticação e redirecionamento de paginas",
+        "limit_date": "26/04/2026",
+        "status": 1
+      },
+      {
+        "description": "Criar sistema modulos de paginas e de componentes",
+        "limit_date": "26/04/2026",
+        "status": 1
+      },
+      {
+        "description": "Criar pagina para adicionar e modificar projetos",
+        "limit_date": "03/05/2026",
+        "status": 0
+      },
+      {
+        "description": "Adicionar o CSS as paginas do Home,Login,Admin,Projects e Informations",
+        "limit_date": "03/05/2026",
+        "status": 0
+      }
+    ],
+    "creation_date": "01/04/2026",
+    "limit_date": "31/07/2026",
+    "status": 1
   },
   {
-    "name": "Project 2"
+    "name": "Projeto Angular",
+    "description": "Aprender mais sobre o angular",
+    "tasks": [],
+    "creation_date": "-",
+    "limit_date": "29/06/2026",
+    "status": 0
   },
   {
-    "name": "Novo projeto",
-    "date": "2026",
-    "status": "ativo"
+    "name": "Projeto Ingles",
+    "description": "Aprender mais sobre a lingua inglesa",
+    "tasks": [],
+    "creation_date": "-",
+    "limit_date": "01/05/2026",
+    "status": 0
+  },
+  {
+    "name": "Projeto Frances",
+    "description": "Aprender mais sobre a lingua francesa",
+    "tasks": [],
+    "creation_date": "-",
+    "limit_date": "01/09/2026",
+    "status": 0
+  },
+  {
+    "name": "Projeto Game",
+    "description": "Aprender mais sobre como criar jogos(Unity ou Godot)",
+    "tasks": [],
+    "creation_date": "-",
+    "limit_date": "01/08/2026",
+    "status": 0
   }
 ]
