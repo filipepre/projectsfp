@@ -2,7 +2,7 @@ const owner = "filipepre";
 const repo = "projectsfp";
 const path = "data/projects.json";
 const branch = "main";
-const token = "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";
+const token = "";
 
 async function getFile() {
   const res = await fetch(
