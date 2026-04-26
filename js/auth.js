@@ -2,7 +2,7 @@
 
     const page = window.location.pathname;
     const BASE_URL = location.pathname.startsWith("/projectsfp") ? "/projectsfp" : "";
-    const publicPages = ["/pages/login/index.html"];
+    const publicPages = [BASE_URL + "/pages/login/index.html"];
     const token = localStorage.getItem("github_token");
 
     function redirectLogin() {
