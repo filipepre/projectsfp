@@ -17,7 +17,11 @@
     "creationDateTable":"Data de criação",
     "deadlineTable":"Data de validade",
     "statusTable":"Estado",
-    "actionTable":"Ações"
+    "actionTable":"Ações",
+
+    "projectsEditTitle":"Editar Projeto",
+    "save":"Guardar",
+    "cancel":"Cancelar"
   },
   "en": {
     "homeMenu": "Home",
@@ -37,6 +41,10 @@
     "creationDateTable":"Creation Date",
     "deadlineTable":"Deadline",
     "statusTable":"Status",
-    "actionTable":"Actions"
+    "actionTable":"Actions",
+
+    "projectsEditTitle":"Modify Project",
+    "save":"Save",
+    "cancel":"Cancel"
   }
 }

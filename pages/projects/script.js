@@ -10,71 +10,91 @@ document.addEventListener("DOMContentLoaded", async () => {
   for (const c of components) {
     await loadComponent(c.id, c.path, c.js, c.css);
   }
+
+  // 🔥 só agora carregas os projetos
+  await loadProjects();
 });
 
+//Ler o projects.json
+const STORAGE_KEY = "projects";
+
 async function loadProjects() {
-  const BASE_URL = location.pathname.startsWith("/projectsfp") ? "/projectsfp" : "";
-  const res = await fetch(BASE_URL + "/data/projects.json");
-  const data = await res.json();
+  let projects = localStorage.getItem(STORAGE_KEY);
 
+  if (projects) {
+    // já existe no localStorage
+    projects = JSON.parse(projects);
+  } else {
+    // fetch inicial
+    const BASE_URL = location.pathname.startsWith("/projectsfp") ? "/projectsfp" : "";
+    const res = await fetch(BASE_URL + "/data/projects.json");
+    projects = await res.json();
+
+    // guardar localmente
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(projects));
+  }
+
+  renderProjects(projects);
+}
+
+//Ler a informação do localStorage
+function renderProjects(projects) {
   const tbody = document.getElementById("table-body");
+  tbody.innerHTML = ""; // limpar antes de renderizar
 
-  data.forEach(project => {
+  projects.forEach(project => {
     const row = document.createElement("tr");
 
     // Nome
-    const nameCell = document.createElement("td");
-    nameCell.textContent = project.name;
-    row.appendChild(nameCell);
+    row.innerHTML += `<td>${project.name}</td>`;
 
     // Descrição
-    const descCell = document.createElement("td");
-    descCell.textContent = project.description;
-    row.appendChild(descCell);
+    row.innerHTML += `<td>${project.description}</td>`;
 
     // Tarefas
-    const taskCell = document.createElement("td");
+    const tasksHTML = project.tasks.map(task => {
+      const status = task.status === 1 ? "✅" : "❌";
+      return `${status} ${task.description} - ${task.limit_date}`;
+    }).join("<br>");
 
-    taskCell.innerHTML = project.tasks
-      .map(task => {
-        const status = task.status === 1 ? "✅" : "❌";
-        return `${status} ${task.description} - ${task.limit_date}`;
-      })
-      .join("<br>");
+    row.innerHTML += `<td>${tasksHTML}</td>`;
 
-    row.appendChild(taskCell);
-
-    // Data criação
-    const creationCell = document.createElement("td");
-    creationCell.textContent = project.creation_date;
-    row.appendChild(creationCell);
-
-    // Data limite
-    const limitCell = document.createElement("td");
-    limitCell.textContent = project.limit_date;
-    row.appendChild(limitCell);
+    // Datas
+    row.innerHTML += `<td>${project.creation_date}</td>`;
+    row.innerHTML += `<td>${project.limit_date}</td>`;
 
     // Status
-    const statusCell = document.createElement("td");
-    statusCell.textContent = project.status === 1 ? "✅" : "❌";
-    row.appendChild(statusCell);
+    row.innerHTML += `<td>${project.status === 1 ? "✅" : "❌"}</td>`;
 
-    // Modify
-    const modifyCell = document.createElement("td");
+    // Ações
+    const actionCell = document.createElement("td");
+    actionCell.classList.add("action-cell");
 
     const buttonEdit = document.createElement("button");
     buttonEdit.textContent = "✏️";
+    buttonEdit.onclick = () => {
+      window.location.href = `modify/index.html?id=${project.id}`;
+    };
 
     const buttonRemove = document.createElement("button");
     buttonRemove.textContent = "🗑️";
+    buttonRemove.onclick = () => removeProject(project.id);
 
-    modifyCell.classList.add("action-cell");
-    modifyCell.appendChild(buttonEdit);
-    modifyCell.appendChild(buttonRemove);
-    row.appendChild(modifyCell);
+    actionCell.appendChild(buttonEdit);
+    actionCell.appendChild(buttonRemove);
+    row.appendChild(actionCell);
 
     tbody.appendChild(row);
   });
 }
 
-loadProjects();
+//Apagar dados
+function removeProject(id) {
+  let projects = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+
+  projects = projects.filter(p => p.id !== id);
+
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(projects));
+
+  renderProjects(projects);
+}

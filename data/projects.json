@@ -1,5 +1,6 @@
 [
   {
+    "id": 1,
     "name": "Projeto GitHub Pages",
     "description": "Criação de um site utilizando o github.",
     "tasks": [
@@ -69,6 +70,7 @@
     "status": 1
   },
   {
+    "id": 2,
     "name": "Projeto Angular",
     "description": "Aprender mais sobre o angular",
     "tasks": [],
@@ -77,6 +79,7 @@
     "status": 0
   },
   {
+    "id": 3,
     "name": "Projeto Ingles",
     "description": "Aprender mais sobre a lingua inglesa",
     "tasks": [],
@@ -85,6 +88,7 @@
     "status": 0
   },
   {
+    "id": 4,
     "name": "Projeto Frances",
     "description": "Aprender mais sobre a lingua francesa",
     "tasks": [],
@@ -93,6 +97,7 @@
     "status": 0
   },
   {
+    "id": 5,
     "name": "Projeto Game",
     "description": "Aprender mais sobre como criar jogos(Unity ou Godot)",
     "tasks": [],

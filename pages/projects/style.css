@@ -1,7 +1,17 @@
+body {
+    display: none;
+    margin: 0px;
+    background-image: url("../../images/background/background.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 table,
 th,
 td {
   border: 1px solid black;
+  background-color: white;
+  opacity: 1;
 }
 
 table {
@@ -13,7 +23,7 @@ td {
 }
 
 /*Botão*/
-.action-cell{
+.action-cell {
   padding: 0px;
 }
 

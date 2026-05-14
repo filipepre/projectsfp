@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Meu Site</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="../../../js/auth.js"></script>
+</head>
+
+<body>
+    <script src="../../../js/loader.js"></script>
+    <script src="../../../js/translator.js"></script>
+    <script src="script.js"></script>
+
+    <div id="header"></div>
+    <h1 data-i18n="projectsEditTitle"></h1>
+
+    <div>
+        <label data-i18n="nameProjectTable"></label>
+        <input id="name" placeholder="Nome" />
+    </div>
+    <div>
+        <label data-i18n="descriptionTable"></label>
+        <textarea id="description" placeholder="Descrição"></textarea>
+    </div>
+    <div>
+        <label data-i18n="creationDateTable"></label>
+        <input id="limit_date" type="date" />
+    </div>
+
+    <button onclick="save()" data-i18n="save"></button>
+    <button onclick="goBack()" data-i18n="cancel"></button>
+</body>
+
+</html>

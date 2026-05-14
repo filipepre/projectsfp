@@ -1,0 +1,19 @@
+.navbar {
+    display: flex;
+}
+
+.navbar a {
+    text-decoration: none;
+    padding: 10px;
+    border: 1px solid black;
+    color: white;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.navbar a:hover {
+    background: #36454F;
+}
+
+.navbar a.active {
+  background: #191970;
+}
