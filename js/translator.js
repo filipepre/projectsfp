@@ -16,6 +16,15 @@ function applyLanguage(lang) {
       el.textContent = value;
     }
   });
+
+  document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
+    const key = el.getAttribute("data-i18n-placeholder");
+    const value = translations?.[lang]?.[key];
+
+    if (value) {
+      el.setAttribute("placeholder", value);
+    }
+  });
 }
 
 function initLanguageSelector() {

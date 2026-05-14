@@ -52,10 +52,23 @@ function renderProjects(projects) {
     row.innerHTML += `<td>${project.description}</td>`;
 
     // Tarefas
-    const tasksHTML = project.tasks.map(task => {
+    const tasksHTML = `
+    <table>
+    <tbody>
+    ${project.tasks.map(task => {
       const status = task.status === 1 ? "✅" : "❌";
-      return `${status} ${task.description} - ${task.limit_date}`;
-    }).join("<br>");
+
+      return `
+        <tr>
+          <td>${status}</td>
+          <td>${task.description}</td>
+          <td>${task.limit_date}</td>
+        </tr>
+      `;
+    }).join("")}
+    </tbody>
+    </table>
+    `;
 
     row.innerHTML += `<td>${tasksHTML}</td>`;
 

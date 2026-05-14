@@ -1,7 +1,167 @@
 body {
     display: none;
-    margin: 0px;
+    margin: 0;
+    font-family: Arial, sans-serif;
+
     background-image: url("../../../images/background/background.svg");
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+/* Título */
+h1 {
+    margin: 30px;
+}
+
+/* Layout principal */
+.page {
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 40px;
+    padding: 0 40px 40px;
+}
+
+/* LEFT (tarefas) */
+.left {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* RIGHT (form) */
+.right {
+    display: flex;
+    justify-content: center;
+}
+
+/* Container do form */
+.container {
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Form */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input,
+textarea {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+textarea {
+    height: 100px;
+}
+
+/* Botões */
+.actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+button {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background: #2c7be5;
+    color: white;
+}
+
+button.cancel {
+    background: #aaa;
+}
+
+/* Lista de tarefas */
+.tasks-section {
+    margin-top: 25px;
+}
+
+/* Lista */
+#taskList {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Tarefa simples (estilo lista) */
+.task {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tasks-section {
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid silver;
+    padding: 0px 10px 10px 10px;
+}
+
+.task-actions {
+    display: flex;
+    gap: 5px;
+}
+
+.task-actions button {
+    padding: 5px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Texto */
+.task span {
+    font-size: 14px;
+}
+
+/* Status */
+.task.concluida {
+    color: #28a745;
+}
+
+.task.pendente {
+    color: #ffc107;
+}
+
+#task_limit_date {
+    margin-left: auto;
+}
+
+.add-task {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 8px;
+    margin-top: 8px;
+    ;
+}
+
+.add-task input {
+    flex: 1;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.add-task button {
+    width: 35px;
+    border-radius: 5px;
+    border: none;
+    background: #2c7be5;
+    color: white;
+    cursor: pointer;
 }

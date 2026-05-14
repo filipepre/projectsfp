@@ -14,23 +14,44 @@
     <script src="script.js"></script>
 
     <div id="header"></div>
+
     <h1 data-i18n="projectsEditTitle"></h1>
 
-    <div>
-        <label data-i18n="nameProjectTable"></label>
-        <input id="name" placeholder="Nome" />
-    </div>
-    <div>
-        <label data-i18n="descriptionTable"></label>
-        <textarea id="description" placeholder="Descrição"></textarea>
-    </div>
-    <div>
-        <label data-i18n="creationDateTable"></label>
-        <input id="limit_date" type="date" />
+    <div class="container">
+
+        <div class="form-group">
+            <label data-i18n="nameProjectTable"></label>
+            <input id="name" placeholder="Nome" />
+        </div>
+
+        <div class="form-group">
+            <label data-i18n="descriptionTable"></label>
+            <textarea id="description" placeholder="Descrição"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label data-i18n="creationDateTable"></label>
+            <input id="limit_date" type="date" />
+        </div>
+
+        <!-- 🔥 LISTA DE TAREFAS AQUI -->
+        <div class="tasks-section">
+            <h3 data-i18n="tasks"></h3>
+            <div id="taskList"></div>
+            <!-- 🔥 NOVA TAREFA -->
+            <div class="add-task">
+                <input id="newTaskInput" data-i18n-placeholder="newTaskPlaceholder" />
+                <button onclick="addTask()">+</button>
+            </div>
+        </div>
+
+        <div class="actions">
+            <button onclick="save()" data-i18n="save"></button>
+            <button class="cancel" onclick="goBack()" data-i18n="cancel"></button>
+        </div>
+
     </div>
 
-    <button onclick="save()" data-i18n="save"></button>
-    <button onclick="goBack()" data-i18n="cancel"></button>
 </body>
 
 </html>

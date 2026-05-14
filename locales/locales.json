@@ -20,6 +20,8 @@
     "actionTable":"Ações",
 
     "projectsEditTitle":"Editar Projeto",
+    "tasks":"Tarefas",
+    "newTaskPlaceholder":"Nova Tarefa",
     "save":"Guardar",
     "cancel":"Cancelar"
   },
@@ -44,6 +46,8 @@
     "actionTable":"Actions",
 
     "projectsEditTitle":"Modify Project",
+    "tasks":"Tasks",
+    "newTaskPlaceholder":"New Task",
     "save":"Save",
     "cancel":"Cancel"
   }
