@@ -19,22 +19,30 @@ document.addEventListener("DOMContentLoaded", async () => {
 const STORAGE_KEY = "projects";
 
 async function loadProjects() {
-  let projects = localStorage.getItem(STORAGE_KEY);
+  try {
+    const local = localStorage.getItem(STORAGE_KEY);
 
-  if (projects) {
-    // já existe no localStorage
-    projects = JSON.parse(projects);
-  } else {
-    // fetch inicial
-    const BASE_URL = location.pathname.startsWith("/projectsfp") ? "/projectsfp" : "";
-    const res = await fetch(BASE_URL + "/data/projects.json");
-    projects = await res.json();
+    // 🥇 1. prioridade ao localStorage
+    if (local) {
+      const projects = JSON.parse(local);
+      renderProjects(projects);
+      return;
+    }
 
-    // guardar localmente
+    // 🥈 2. fallback GitHub
+    const file = await getFile();
+    const projects = file.json;
+
     localStorage.setItem(STORAGE_KEY, JSON.stringify(projects));
-  }
 
-  renderProjects(projects);
+    renderProjects(projects);
+
+  } catch (err) {
+    console.warn("Erro ao carregar GitHub, a usar fallback local:", err);
+
+    const projects = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+    renderProjects(projects);
+  }
 }
 
 //Ler a informação do localStorage
@@ -110,4 +118,25 @@ function removeProject(id) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(projects));
 
   renderProjects(projects);
+}
+
+function goToCreate() {
+  window.location.href = "add/index.html";
+}
+
+async function syncData() {
+  try {
+    const file = await getFile();
+
+    const localProjects = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+
+    // 🔥 local manda para GitHub (overwrite simples)
+    await updateFile(localProjects, file.sha);
+
+    alert("Sync concluído ✔️");
+
+  } catch (err) {
+    console.error(err);
+    alert("Erro no sync");
+  }
 }

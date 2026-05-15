@@ -11,19 +11,53 @@ document.addEventListener("DOMContentLoaded", async () => {
     await loadComponent(c.id, c.path, c.js, c.css);
   }
 
-  loadProject(); // 🔥 carregar dados depois dos componentes
+  loadProject();
 });
 
 const STORAGE_KEY = "projects";
-let tasks = []; // 🔥 global
+let tasks = [];
 
-// 🔍 obter ID da URL
+/* =========================
+   DATE HELPERS (DD/MM/YYYY)
+========================= */
+function toBR(date) {
+  if (!date) return "";
+
+  // já está certo
+  if (date.includes("/")) return date;
+
+  // ISO -> DD/MM/YYYY
+  if (date.includes("-")) {
+    const [y, m, d] = date.split("-");
+    return `${d}/${m}/${y}`;
+  }
+
+  return "";
+}
+
+function toISO(date) {
+  if (!date) return "";
+
+  // DD/MM/YYYY -> ISO
+  if (date.includes("/")) {
+    const [d, m, y] = date.split("/");
+    return `${y}-${m}-${d}`;
+  }
+
+  return date;
+}
+
+/* =========================
+   GET ID
+========================= */
 function getProjectId() {
   const params = new URLSearchParams(window.location.search);
   return parseInt(params.get("id"));
 }
 
-// 📥 carregar dados no formulário
+/* =========================
+   LOAD PROJECT
+========================= */
 function loadProject() {
   const id = getProjectId();
   const projects = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
@@ -38,21 +72,19 @@ function loadProject() {
   document.getElementById("name").value = project.name;
   document.getElementById("description").value = project.description;
 
-  // converter data para input[type=date]
-  if (project.limit_date && project.limit_date.includes("/")) {
-    const [day, month, year] = project.limit_date.split("/");
-    document.getElementById("limit_date").value = `${year}-${month}-${day}`;
-  } else {
-    document.getElementById("limit_date").value = project.limit_date;
-  }
+  document.getElementById("limit_date").value = toISO(project.limit_date);
 
-  // 🔥 carregar tarefas
-  tasks = project.tasks || [];
+  tasks = (project.tasks || []).map(t => ({
+    ...t,
+    limit_date: toBR(t.limit_date)
+  }));
 
   renderTasks();
 }
 
-// 🎨 renderizar tarefas
+/* =========================
+   RENDER
+========================= */
 function renderTasks() {
   const container = document.getElementById("taskList");
   container.innerHTML = "";
@@ -63,17 +95,13 @@ function renderTasks() {
     div.classList.add("task");
     div.classList.add(task.status === 1 ? "concluida" : "pendente");
 
-    // converter data para input[type=date]
-    if (task.limit_date && task.limit_date.includes("/")) {
-      const [day, month, year] = task.limit_date.split("/");
-      var value = `${year}-${month}-${day}`;
-    } else {
-      var value = task.limit_date;
-    }
-
     div.innerHTML = `
-      <span>${task.description}</span>
-      <input id="task_limit_date" type="date" value="${value}" data-index="${index}"></input>
+      <input class="description-input" type="text" value="${task.description}"
+        onchange="updateTask(${index}, 'description', this.value)" />
+
+      <input type="date"
+        value="${toISO(task.limit_date)}"
+        onchange="updateTaskDate(${index}, this.value)" />
 
       <div class="task-actions">
         <button onclick="toggleTask(${index})">
@@ -88,45 +116,50 @@ function renderTasks() {
   });
 }
 
-// ➕ adicionar tarefa
+/* =========================
+   ADD TASK
+========================= */
 function addTask() {
   const input = document.getElementById("newTaskInput");
   const text = input.value.trim();
 
   if (!text) return;
 
-  const novaTarefa = {
+  tasks.push({
     description: text,
-    limit_date: new Date().toLocaleDateString(),
+    limit_date: toBR(new Date().toISOString().split("T")[0]),
     status: 0
-  };
-
-  tasks.push(novaTarefa);
+  });
 
   saveTasks();
   renderTasks();
-
   input.value = "";
 }
 
-// 💾 guardar tarefas no projeto
+/* =========================
+   SAVE TASKS
+========================= */
 function saveTasks() {
   const id = getProjectId();
-  let projects = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+  const projects = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
 
   const index = projects.findIndex(p => p.id === id);
-
   if (index === -1) return;
 
-  projects[index].tasks = tasks;
+  projects[index].tasks = tasks.map(t => ({
+    ...t,
+    limit_date: toBR(t.limit_date)
+  }));
 
   localStorage.setItem(STORAGE_KEY, JSON.stringify(projects));
 }
 
-// 💾 guardar alterações do projeto
+/* =========================
+   SAVE PROJECT
+========================= */
 function save() {
   const id = getProjectId();
-  let projects = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+  const projects = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
 
   const index = projects.findIndex(p => p.id === id);
 
@@ -135,35 +168,14 @@ function save() {
     return;
   }
 
-  const rawDate = document.getElementById("limit_date").value;
-  let formattedDate = rawDate;
-
-  if (rawDate) {
-    const [year, month, day] = rawDate.split("-");
-    formattedDate = `${day}/${month}/${year}`;
-  }
-
   projects[index].name = document.getElementById("name").value;
   projects[index].description = document.getElementById("description").value;
-  projects[index].limit_date = formattedDate;
+  projects[index].limit_date = toBR(document.getElementById("limit_date").value);
 
-  // 🔥 normalizar tasks
-  const taskInputs = document.querySelectorAll("#task_limit_date");
-
-  projects[index].tasks = Array.from(taskInputs).map((input, i) => {
-    let raw = input.value;
-    let formatted = raw;
-
-    if (raw && raw.includes("-")) {
-      const [year, month, day] = raw.split("-");
-      formatted = `${day}/${month}/${year}`;
-    }
-
-    return {
-      ...tasks[i], // mantém resto da task (descrição, status, etc.)
-      limit_date: formatted
-    };
-  });
+  projects[index].tasks = tasks.map(t => ({
+    ...t,
+    limit_date: toBR(t.limit_date)
+  }));
 
   localStorage.setItem(STORAGE_KEY, JSON.stringify(projects));
 
@@ -171,24 +183,11 @@ function save() {
   goBack();
 }
 
-// 🔙 voltar
-function goBack() {
-  window.location.href = "../index.html";
-}
-
-// ⌨️ ENTER adiciona tarefa
-document.addEventListener("DOMContentLoaded", () => {
-  const input = document.getElementById("newTaskInput");
-  if (input) {
-    input.addEventListener("keypress", function (e) {
-      if (e.key === "Enter") addTask();
-    });
-  }
-});
-
+/* =========================
+   TASK OPS
+========================= */
 function toggleTask(index) {
   tasks[index].status = tasks[index].status === 1 ? 0 : 1;
-
   saveTasks();
   renderTasks();
 }
@@ -197,7 +196,23 @@ function deleteTask(index) {
   if (!confirm("Apagar esta tarefa?")) return;
 
   tasks.splice(index, 1);
-
   saveTasks();
   renderTasks();
+}
+
+function updateTask(index, field, value) {
+  tasks[index][field] = value;
+  saveTasks();
+}
+
+function updateTaskDate(index, value) {
+  tasks[index].limit_date = toBR(value);
+  saveTasks();
+}
+
+/* =========================
+   NAV
+========================= */
+function goBack() {
+  window.location.href = "../index.html";
 }

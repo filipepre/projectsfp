@@ -23,7 +23,9 @@
     "tasks":"Tarefas",
     "newTaskPlaceholder":"Nova Tarefa",
     "save":"Guardar",
-    "cancel":"Cancelar"
+    "cancel":"Cancelar",
+
+    "addProjectTitle":"Novo projeto"
   },
   "en": {
     "homeMenu": "Home",
@@ -49,6 +51,8 @@
     "tasks":"Tasks",
     "newTaskPlaceholder":"New Task",
     "save":"Save",
-    "cancel":"Cancel"
+    "cancel":"Cancel",
+
+    "addProjectTitle":"New Project"
   }
 }

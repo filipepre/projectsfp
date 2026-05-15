@@ -1,34 +1,133 @@
 body {
-    display: none;
-    margin: 0px;
+    margin: 0;
+    font-family: "Segoe UI", Tahoma, sans-serif;
     background-image: url("../../images/background/background.svg");
-    background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
 }
 
-table,
-th,
-td {
-  border: 1px solid black;
-  background-color: white;
-  opacity: 1;
+/* Container geral */
+h1 {
+    margin: 30px;
 }
 
+/* Tabela */
 table {
-  border-collapse: collapse;
-  width: 100%;
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
+/* Cabeçalho */
+thead {
+    background: #2c3e50;
+    color: white;
+}
+
+th {
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+}
+
+/* Linhas */
 td {
-  padding: 20px;
+    padding: 15px;
+    border-bottom: 1px solid #eee;
 }
 
-/*Botão*/
+/* Hover nas linhas */
+tbody tr:hover {
+    background: #f5f7fa;
+    transition: 0.2s;
+}
+
+/* Subtabela (tasks) */
+td table {
+    width: 100%;
+    background: transparent;
+    box-shadow: none;
+}
+
+td table td {
+    padding: 5px;
+    border: none;
+    font-size: 14px;
+}
+
+/* Status emoji alinhado */
+td table td:first-child {
+    width: 30px;
+}
+
+/* Botões */
 .action-cell {
-  padding: 0px;
+    display: flex;
+    gap: 5px;
+    padding: 10px;
 }
 
 button {
-  width: 100%;
-  height: 100%;
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.2s;
+}
+
+/* Edit */
+button:first-child {
+    background: #3498db;
+    color: white;
+}
+
+button:first-child:hover {
+    background: #2980b9;
+}
+
+/* Delete */
+button:last-child {
+    background: #e74c3c;
+    color: white;
+}
+
+button:last-child:hover {
+    background: #c0392b;
+}
+
+.top-bar {
+    margin: 0 auto 15px;
+    display: flex;
+}
+
+.top-bar button {
+    padding: 10px 15px;
+    background: #2ecc71;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: 0.2s;
+}
+
+.top-bar button:hover {
+    background: #27ae60;
+}
+
+.barTitle {
+    display: flex;
+}
+
+.syncButton{
+    max-width: 50px;
+    height: 40px;
+    background: #852ecc !important;
+    margin: 30px;
+    margin-left: auto;
 }
